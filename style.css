@@ -1,0 +1,91 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'roboto',sans-serif;
+}
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    /* background-color: rgba(117, 32, 32, 0.9); */
+    background-color: rgba(0, 128, 128, 0.5);
+    text-align: end;
+}
+
+.app {
+    background-color: beige;
+    width: 500px;
+    margin-top: 50px;
+    max-height: 80%;
+
+}
+.header {
+    width: 100%;
+    height: 100px;
+    background-color: rgb(54, 180, 121);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header .form {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+}
+.header .form .text {
+    border-radius: 10px 0 10px 0;
+    outline: none;
+    border-style: none;
+    background-color: beige;
+    color: teal;
+    width: 70%;
+    padding: 20px 10px;
+}
+.header .form .submit {
+    border-radius: 10px 0 10px 0;
+    background-color:  rgba(0, 128, 128);
+    color: beige;
+    border-style: none;
+    padding: 20px 40px;
+    font-size: 14px;
+}
+
+.task.done {
+    background-color: rgba(0, 128, 128, 0.8);
+    color: rgba(245, 245, 220, 0.4);
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    color:rgb(117, 32, 32);
+}
+.countTask {
+    background-color:  rgba(255, 217, 0, 0.5);
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    border-radius: 0px;
+}
+
+.deleteAll {
+    font-size: 16px;
+    background-color: rgba(255, 217, 0, 0.5);
+    border-style: none;
+    color:rgb(117, 32, 32);
+    padding: 20px;
+    width: 50%;
+    outline: none;
+    opacity: .5;
+    cursor: pointer;
+    pointer-events: none;
+    border-radius: 0 ;
+}
+.deleteAll.active {
+    opacity: 1;
+    background-color: rgba(255, 217, 0, 0.5);
+    pointer-events: auto;
+}
