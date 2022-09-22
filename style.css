@@ -57,7 +57,20 @@ body {
     background-color:#2B193E ;
     color: #eee;
 }
-
+.task input {
+    color :#2B193E ;
+    background-color: #eee;
+    font-family: arial;
+    text-transform: capitalize;
+    border-style:none;
+    outline: none;
+    font-size: 18px;
+    cursor:auto;
+}
+.task.done input {
+    color:#eee;
+    background-color:#2B193E;
+}
 .actions {
     display: flex;
     justify-content: space-between;

@@ -48,6 +48,15 @@ taskDiv.addEventListener("click" , (e) => {
         }
         
     }
+    if(e.target.classList.contains("edit")) {
+        let input = e.target.previousElementSibling.children[0];
+            input.removeAttribute("readonly");
+            input.focus();
+            input.addEventListener('blur', event => {
+                event.target.setAttribute('readonly', true);
+                editTaskWith(e.target.parentElement.getAttribute("data-id"),event.target.value);
+            });
+    }
     if (e.target.classList.contains("task")) {
         statusTaskWith(e.target.getAttribute("data-id"));
         e.target.classList.toggle("done");
@@ -59,15 +68,15 @@ delAll.addEventListener("click" , (e) => {
 });
 
 
+
 function addTaskToPage(task) {
     taskDiv.innerHTML ="";
     countTask.textContent = ` Number Of Tasks : ${taskArr.length}`
-    taskDiv.style.cssText = "color:#2B193E;background-color:#eee; width:500px;border-radius:0 0 10px 10px;box-shadow:inset 0px 1px 20px 5px rgba(86, 215, 232, 0.2);";
+    taskDiv.style.cssText = "cursor:pointer;color:#2B193E;background-color:#eee; width:500px;border-radius:0 0 10px 10px;box-shadow:inset 0px 1px 20px 5px rgba(86, 215, 232, 0.2);";
     task.forEach(task => {
         let contentText = document.createElement("div");
-        let taskMsg= document.createElement("h4");
-        taskMsg.style.cssText = "font-family: arial;text-transform: capitalize;"
-        taskMsg.appendChild(document.createTextNode(`${task.title}`));
+        let taskMsg= document.createElement("div");
+        taskMsg.innerHTML =`<input type="text" value='${task.title}' readonly ></input>` ;
         contentText.classList = "task";
         if (task.done) {
             contentText.className = "task done";
@@ -76,10 +85,15 @@ function addTaskToPage(task) {
         contentText.appendChild(taskMsg);
         contentText.style.cssText ="display:flex;justify-content:space-between;margin:0px 0px; padding:20px;"
         let btn = document.createElement("button");
+        let edit= document.createElement("button");
         btn.appendChild(document.createTextNode("delete"));
+        edit.appendChild(document.createTextNode("edit"));
         btn.classList = "del";
-        btn.style.cssText = "color:#D53C3C;cursor:pointer;border-style:none;text-decoration: none;padding:5px 10px;background-color:inherit;border-radius: 10px 0 10px 0;font-size:16px";
-        contentText.appendChild(btn)
+        edit.classList = "edit";
+        btn.style.cssText = "color:#D53C3C;cursor:pointer;border-style:none;text-decoration: none;padding:5px 10px;background-color:inherit;font-size:16px";
+        edit.style.cssText = "color:#D53C3C;cursor:pointer;border-style:none;text-decoration: none;padding:5px 10px;background-color:inherit;font-size:16px;margin-left:150px;";
+        contentText.appendChild(edit);
+        contentText.appendChild(btn);
         taskDiv.appendChild(contentText);
         document.body.appendChild(taskDiv);
     })
@@ -98,8 +112,16 @@ function getTaskFromLocalstorage() {
 }
 
 function deleteTaskWith(taskId) {
-    taskArr = taskArr.filter(theTask => theTask.id != taskId);        countTask.textContent = ` ${taskArr.length} Numbers Of Tasks`
+    taskArr = taskArr.filter(theTask => theTask.id != taskId);       
     countTask.textContent = ` Number Of Tasks : ${taskArr.length}`;
+    addTaskToLocalstorage(taskArr);
+}
+function editTaskWith(taskId,taskValue) {
+    for (let i = 0; i < taskArr.length; i++) {
+        if(taskId == taskArr[i].id){
+            taskArr[i].title = taskValue;
+        }
+    }
     addTaskToLocalstorage(taskArr);
 }
 
