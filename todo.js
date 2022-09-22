@@ -62,7 +62,7 @@ delAll.addEventListener("click" , (e) => {
 function addTaskToPage(task) {
     taskDiv.innerHTML ="";
     countTask.textContent = ` Number Of Tasks : ${taskArr.length}`
-    taskDiv.style.cssText = "color:#5EC3FF;background-color:#eee; width:500px;border-radius:0 0 10px 10px;box-shadow:inset 0px 1px 20px 5px rgba(86, 215, 232, 0.2);";
+    taskDiv.style.cssText = "color:#2B193E;background-color:#eee; width:500px;border-radius:0 0 10px 10px;box-shadow:inset 0px 1px 20px 5px rgba(86, 215, 232, 0.2);";
     task.forEach(task => {
         let contentText = document.createElement("div");
         let taskMsg= document.createElement("h4");
@@ -78,7 +78,7 @@ function addTaskToPage(task) {
         let btn = document.createElement("button");
         btn.appendChild(document.createTextNode("delete"));
         btn.classList = "del";
-        btn.style.cssText = "color:inherit;cursor:pointer;border-style:none;text-decoration: none;padding:5px 10px;background-color:inherit;border-radius: 10px 0 10px 0;font-size:16px";
+        btn.style.cssText = "color:#D53C3C;cursor:pointer;border-style:none;text-decoration: none;padding:5px 10px;background-color:inherit;border-radius: 10px 0 10px 0;font-size:16px";
         contentText.appendChild(btn)
         taskDiv.appendChild(contentText);
         document.body.appendChild(taskDiv);
