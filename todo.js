@@ -22,7 +22,7 @@ submit.onclick = function() {
         addTaskToArr(taskText.value);
         taskText.value = "";
         delAll.className = "deleteAll active";  
-        countTask.textContent = ` Tasks = ${taskArr.length}`
+        countTask.textContent = ` Number Of Tasks : ${taskArr.length}`
     }
 
 };
@@ -61,12 +61,12 @@ delAll.addEventListener("click" , (e) => {
 
 function addTaskToPage(task) {
     taskDiv.innerHTML ="";
-    countTask.textContent = ` Tasks = ${taskArr.length}`
-    taskDiv.style.cssText = "color:rgba(0, 128, 128);  background-color:beige; width:500px;box-shadow:inset 0px 1px 20px 5px rgba(46,61,73,0.2);";
+    countTask.textContent = ` Number Of Tasks : ${taskArr.length}`
+    taskDiv.style.cssText = "color:#5EC3FF;background-color:#eee; width:500px;border-radius:0 0 10px 10px;box-shadow:inset 0px 1px 20px 5px rgba(86, 215, 232, 0.2);";
     task.forEach(task => {
         let contentText = document.createElement("div");
         let taskMsg= document.createElement("h4");
-        taskMsg.style.cssText = "font-family: arial;"
+        taskMsg.style.cssText = "font-family: arial;text-transform: capitalize;"
         taskMsg.appendChild(document.createTextNode(`${task.title}`));
         contentText.classList = "task";
         if (task.done) {
@@ -74,11 +74,11 @@ function addTaskToPage(task) {
         }
         contentText.setAttribute("data-id",task.id);
         contentText.appendChild(taskMsg);
-        contentText.style.cssText ="display:flex;justify-content:space-between;margin:5px 0px; padding:20px;"
+        contentText.style.cssText ="display:flex;justify-content:space-between;margin:0px 0px; padding:20px;"
         let btn = document.createElement("button");
         btn.appendChild(document.createTextNode("delete"));
         btn.classList = "del";
-        btn.style.cssText = "color:rgb(117, 32, 32);cursor:pointer;border-style:none;text-decoration: none;padding:5px 10px;background-color:inherit;border-radius: 10px 0 10px 0;font-size:16px";
+        btn.style.cssText = "color:inherit;cursor:pointer;border-style:none;text-decoration: none;padding:5px 10px;background-color:inherit;border-radius: 10px 0 10px 0;font-size:16px";
         contentText.appendChild(btn)
         taskDiv.appendChild(contentText);
         document.body.appendChild(taskDiv);
@@ -98,8 +98,8 @@ function getTaskFromLocalstorage() {
 }
 
 function deleteTaskWith(taskId) {
-    taskArr = taskArr.filter(theTask => theTask.id != taskId);        countTask.textContent = ` ${taskArr.length} Tasks`
-    countTask.textContent = ` Tasks = ${taskArr.length}`;
+    taskArr = taskArr.filter(theTask => theTask.id != taskId);        countTask.textContent = ` ${taskArr.length} Numbers Of Tasks`
+    countTask.textContent = ` Number Of Tasks : ${taskArr.length}`;
     addTaskToLocalstorage(taskArr);
 }
 
@@ -114,6 +114,6 @@ function statusTaskWith(taskId) {
 function deleteTaskFromLocalStorage () {
     taskArr = [];
     taskDiv.innerHTML = "";
-    countTask.textContent = ` Tasks = ${0}`
+    countTask.textContent = ` Number Of Tasks : ${0}`
     window.localStorage.clear();
 }
