@@ -6,20 +6,22 @@
 }
 body {
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: 80%;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 40px;
+    min-height: 100vh;
     background-color: #0D050E;
-    text-align: end;
 }
 
 .app {
-    /* background-color: #fff; */
-    width: 500px;
-    margin-top: 50px;
-}
-.header {
+    max-width: 500px;
     width: 100%;
+}
+.app .container {
+    display: flex;
+    flex-direction: column;
+}
+.app .container .header {
     height: 120px;
     background-color: #A3445D;
     display: flex;
@@ -27,12 +29,12 @@ body {
     align-items: center;
     border-radius: 10px 10px 0 0;
 }
-.header .form {
+.app .container .header .form {
     display: flex;
     justify-content: center;
     width: 95%;
 }
-.header .form .text {
+.app .container .header .form .text {
     border-radius: 10px 0 0px 0;
     outline: none;
     border-style: none;
@@ -43,50 +45,105 @@ body {
     width: 70%;
     padding: 10px;
 }
-.header .form .submit {
+.app .container .header .form .submit {
     border-radius: 0 0 12px 0;
-    /* background-color: #6AFFE5; */
     background-color: #8D2D56;
     color: #eee;
     border-style: none;
     padding: 20px 20px;
     font-size: 14px;
 }
+.app .container .content {
+    cursor:pointer;
+    color:#2B193E;
+    background-color:#eee;
+    border-radius:0 0 10px 10px;
+    box-shadow:inset 0px 1px 20px 5px rgba(86, 215, 232, 0.2);
+    max-height: 320px;
+    overflow-y: auto;
+} 
+.content::-webkit-scrollbar {
+    background-color: rgba(213, 60, 60, 0.9);
+    width: 8px;
+}
+.content::-webkit-scrollbar-thumb {
+    background-color: rgba(43, 25, 62, 0.9);
+    border-radius: 10px;
+}
 
-.task.done {
-    background-color:#2B193E ;
+.content .task {
+    display:flex;
+    justify-content:space-between;
+    margin:0px 0px; 
+    padding:20px;
+}
+
+
+.content .task.done {
+    background-color:#A3445D;
     color: #eee;
 }
-.task input {
+.content .task #textarea  {
     color :#2B193E ;
     background-color: #eee;
-    font-family: arial;
+    height: 100%;
+    width: 100%;
     text-transform: capitalize;
     border-style:none;
     outline: none;
     font-size: 18px;
+    font-weight: 300;
     cursor:auto;
+    flex: 1;
+    /* pointer-events: none; */
+    resize: none;
 }
-.task.done input {
+.content .task #textarea::-webkit-scrollbar {
+    display: none;
+}
+.content .task.done #textarea {
+    color:#2B193E;
+    background-color:#A3445D;
+    text-decoration: line-through;
+}
+.content .task .del {
     color:#eee;
+    cursor:pointer;
+    border-style:none;
+    text-decoration: none;
+    padding:4px 8px;
+    background-color:#D53C3C;
+    font-size:12px;
+    margin-right: -6px;
+    border-radius: 0 0px 8px 0;
+} 
+.content .task .edit {
+    color:#eee;
+    cursor:pointer;
+    border-style:none;
+    text-decoration: none;
+    padding:4px 8px;
     background-color:#2B193E;
+    font-size:12px;
+    margin-right:-184px ;
+    border-radius: 8px 0 0px 0;
 }
-.actions {
+
+
+.app .container .actions {
     display: flex;
     justify-content: space-between;
-    /* color:#5EC3FF; */
 }
-.countTask {
+.app .container .actions .countTask {
     background-color:  #2B193E;
     color: #eee;
-    width: 75%;
+    flex: 1;
     padding: 20px;
     display: flex;
     justify-content: center;
-    border-radius: 0px;
 }
 
-.deleteAll {
+.app .container .actions .deleteAll {
     font-size: 16px;
     background-color: rgba(213, 60, 60, 0.8);
     border-style: none;
@@ -99,7 +156,7 @@ body {
     pointer-events: none;
     border-radius: 0 ;
 }
-.deleteAll.active {
+.app .container .actions .deleteAll.active {
     opacity: 1;
     background-color: #D53C3C;
     pointer-events: auto;

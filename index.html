@@ -8,20 +8,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,300&display=swap" rel="stylesheet">
-        <title>Document</title>
+        <title>ToDo list</title>
 </head>
 <body>
     <main class="app">
-        <div class="header">
-            <div class="form">
-                <input class="text" type="text" name="taskText"  placeholder="What are your duties for today ?">
-                <input class="submit" type="submit" value="submit">
+        <div class="container">
+            <div class="header">
+                <div class="form">
+                    <input class="text" type="text" name="inputText"  placeholder="What are your duties for today ?">
+                    <input class="submit" type="submit" value="submit">
+                </div>
             </div>
-        </div>
-        <div class="content"></div>
-        <div class="actions">
-            <span class="countTask"></span>
-            <input  id="del" class="deleteAll" type="button" value="Delete All" >
+            <div class="actions">
+                <span class="countTask"></span>
+                <input type="button"  id="del" class="deleteAll"  value="Delete All" >
+            </div>
+            <div class="content"></div>
         </div>
     </main>
     <script src="todo.js"></script>

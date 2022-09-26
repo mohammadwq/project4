@@ -1,10 +1,13 @@
-
-let taskText = document.querySelector('[name="taskText"]');
+let app = document.querySelector(".app");
+let container = document.querySelector(".container");
+let taskText = document.querySelector('[name="inputText"]');
 let submit = document.querySelector('[type="submit"]');
 let taskDiv = document.querySelector(".content");
+let actionBtn = document.querySelector(".actions")
 let delAll = document.getElementById("del");
 let countTask = document.querySelector(".countTask");
 let taskArr = [];
+
 
 
 if (window.localStorage.getItem("task")) {
@@ -18,14 +21,15 @@ getTaskFromLocalstorage();
 
 
 submit.onclick = function() {
-    if (taskText.value !== "") {
-        addTaskToArr(taskText.value);
+    if (taskText.value !== "" && taskText.value.trim().length !== 0) {
+        addTaskToArr(taskText.value.trim());
         taskText.value = "";
         delAll.className = "deleteAll active";  
-        countTask.textContent = ` Number Of Tasks : ${taskArr.length}`
+        countTask.textContent = ` Number Of Tasks : ${taskArr.length}`;
     }
 
 };
+
 
 function addTaskToArr(text) {
     let theTask = {
@@ -72,30 +76,27 @@ delAll.addEventListener("click" , (e) => {
 function addTaskToPage(task) {
     taskDiv.innerHTML ="";
     countTask.textContent = ` Number Of Tasks : ${taskArr.length}`
-    taskDiv.style.cssText = "cursor:pointer;color:#2B193E;background-color:#eee; width:500px;border-radius:0 0 10px 10px;box-shadow:inset 0px 1px 20px 5px rgba(86, 215, 232, 0.2);";
     task.forEach(task => {
         let contentText = document.createElement("div");
         let taskMsg= document.createElement("div");
-        taskMsg.innerHTML =`<input type="text" value='${task.title}' readonly ></input>` ;
+        taskMsg.innerHTML =`<textarea id="textarea"  readonly >${task.title}</textarea>` ;
         contentText.classList = "task";
         if (task.done) {
             contentText.className = "task done";
         }
         contentText.setAttribute("data-id",task.id);
         contentText.appendChild(taskMsg);
-        contentText.style.cssText ="display:flex;justify-content:space-between;margin:0px 0px; padding:20px;"
         let btn = document.createElement("button");
         let edit= document.createElement("button");
         btn.appendChild(document.createTextNode("delete"));
         edit.appendChild(document.createTextNode("edit"));
         btn.classList = "del";
         edit.classList = "edit";
-        btn.style.cssText = "color:#D53C3C;cursor:pointer;border-style:none;text-decoration: none;padding:5px 10px;background-color:inherit;font-size:16px";
-        edit.style.cssText = "color:#D53C3C;cursor:pointer;border-style:none;text-decoration: none;padding:5px 10px;background-color:inherit;font-size:16px;margin-left:150px;";
         contentText.appendChild(edit);
         contentText.appendChild(btn);
         taskDiv.appendChild(contentText);
-        document.body.appendChild(taskDiv);
+        app.appendChild(container);
+        document.body.appendChild(app);
     })
 
 };
